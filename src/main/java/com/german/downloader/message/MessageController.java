@@ -52,7 +52,7 @@ public class MessageController {
 
     @GetMapping(value = "delete/{id}")
     public ModelAndView delete(@PathVariable("id") Long id) {
-        this.messageRepository.deleteMessage(id);
+        this.messageRepository.delete(id);
         Iterable<Message> messages = this.messageRepository.findAll();
         return new ModelAndView("messages/list", "messages", messages);
     }

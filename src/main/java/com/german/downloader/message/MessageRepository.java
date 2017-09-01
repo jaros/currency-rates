@@ -1,15 +1,8 @@
 package com.german.downloader.message;
 
-import java.util.Collection;
+import org.springframework.data.repository.CrudRepository;
 
-public interface MessageRepository {
+public interface MessageRepository extends CrudRepository<Message, Long> {
 
-    Collection<Message> findAll();
-
-    Message save(Message message);
-
-    Message findMessage(Long id);
-
-    void deleteMessage(Long id);
 
 }
