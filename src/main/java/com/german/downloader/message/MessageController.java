@@ -42,7 +42,8 @@ public class MessageController {
         }
         message = this.messageRepository.save(message);
         redirect.addFlashAttribute("globalMessage", "Successfully created a new message");
-        return new ModelAndView("redirect:/{message.id}", "message.id", message.getId());
+        return view(message);
+//        return new ModelAndView("redirect:/{message.id}", "message.id", message.getId());
     }
 
     @RequestMapping("foo")
