@@ -7,7 +7,10 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CurrencyData {
@@ -25,7 +28,11 @@ public class CurrencyData {
     }
 
     public List<ExchangeRate> lastExchangeRates() {
-        return ratesCache.computeIfAbsent(LocalDate.now(), this::externalExchangeRates);
+        return exchangeRatesForDay(LocalDate.now());
+    }
+
+    public List<ExchangeRate> exchangeRatesForDay(LocalDate date) {
+        return ratesCache.computeIfAbsent(date, this::externalExchangeRates);
     }
 
     private List<ExchangeRate> externalExchangeRates(LocalDate forDate) {
