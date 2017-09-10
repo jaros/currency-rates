@@ -9,7 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/messages")
 public class MessageController {
 
     private final MessageRepository messageRepository;
@@ -24,7 +24,7 @@ public class MessageController {
         return new ModelAndView("messages/list", "messages", messages);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ModelAndView view(@PathVariable("id") Message message) {
         return new ModelAndView("messages/view", "message", message);
     }
@@ -51,14 +51,14 @@ public class MessageController {
         throw new RuntimeException("Expected exception in controller");
     }
 
-    @GetMapping(value = "delete/{id}")
+    @GetMapping(value = "/delete/{id}")
     public ModelAndView delete(@PathVariable("id") Long id) {
         this.messageRepository.delete(id);
         Iterable<Message> messages = this.messageRepository.findAll();
         return new ModelAndView("messages/list", "messages", messages);
     }
 
-    @GetMapping(value = "modify/{id}")
+    @GetMapping(value = "/modify/{id}")
     public ModelAndView modifyForm(@PathVariable("id") Message message) {
         return new ModelAndView("messages/form", "message", message);
     }
