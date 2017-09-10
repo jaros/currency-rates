@@ -14,7 +14,9 @@ import static java.util.Arrays.asList;
 @RequestMapping("/rates")
 public class RatesViewList {
 
-    private CurrencyData currencyData = new CurrencyData(asList("EUR", "USD", "CHF", "RUB"));
+    private CurrencyData currencyData = new CurrencyData(
+            asList("EUR", "USD", "CHF", "RUB"),
+            "http://api.fixer.io/%s?base=%s");
 
     @GetMapping
     ModelAndView rates() throws IOException {
